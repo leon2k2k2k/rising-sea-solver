@@ -1,0 +1,14 @@
+{
+  "id": "a_category_in_which_",
+  "title": "A category in which each morphism is an isomorphism is called a groupoid. (This notion is not important in what we will discuss. The point of this exercise is to give you some practice with categories, by relating them to an object you know well.)\n\n\\begin{enumerate}\n\\item[(a)] A perverse definition of a group is: a groupoid with one object. Make sense of this. (Similarly, in case you care: a perverse definition of a monoid is: a category with one object.)\n\\item[(b)] Describe a groupoid that is not a group.\n\\end{enumerate}",
+  "content": "A category in which each morphism is an isomorphism is called a groupoid. (This notion is not important in what we will discuss. The point of this exercise is to give you some practice with categories, by relating them to an object you know well.)\n\n\\begin{enumerate}\n\\item[(a)] A perverse definition of a group is: a groupoid with one object. Make sense of this. (Similarly, in case you care: a perverse definition of a monoid is: a category with one object.)\n\\item[(b)] Describe a groupoid that is not a group.\n\\end{enumerate}",
+  "status": "not_started",
+  "solutions": [],
+  "source_file": null,
+  "start_line": 73,
+  "end_line": 80,
+  "chapter": null,
+  "section": null,
+  "extraction_method": "deterministic_environment_exercise",
+  "extraction_timestamp": "2025-12-23T15:26:38.670882"
+}

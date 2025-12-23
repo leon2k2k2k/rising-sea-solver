@@ -1,1 +1,0 @@
-# FOAG Chapter 1 Exercises (Cleaned)\n\n

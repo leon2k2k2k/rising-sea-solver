@@ -1,0 +1,58 @@
+[
+  {
+    "id": "1.1.A",
+    "title": "Unimportant Exercise",
+    "content": "A category in which each morphism is an isomorphism is called a groupoid. (This notion is not important in what we will discuss. The point of this exercise is to give you some practice with categories, by relating them to an object you know well.)\n\n\\begin{enumerate}\n\\item[(a)] A perverse definition of a group is: a groupoid with one object. Make sense of this. (Similarly, in case you care: a perverse definition of a monoid is: a category with one object.)\n\\item[(b)] Describe a groupoid that is not a group.\n\\end{enumerate}",
+    "status": "not_started",
+    "solutions": [],
+    "source_file": null,
+    "start_line": 63,
+    "end_line": 71,
+    "chapter": null,
+    "section": null,
+    "extraction_method": "deterministic_subsubsection_exercise",
+    "extraction_timestamp": "2025-12-23T15:35:36.081535"
+  },
+  {
+    "id": "1.1.B",
+    "title": "Exercise",
+    "content": "If $A$ is an object in a category $\\mathcal{C}$, show that the invertible elements of $\\operatorname{Mor}(A, A)$ form a group (called the automorphism group of $A$, denoted $\\operatorname{Aut}(A)$). What are the automorphism groups of the objects in Examples 1.1.2 and 1.1.3? Show that two isomorphic objects have isomorphic automorphism groups. (For readers with a topological background: if $X$ is a topological space, then the fundamental groupoid is the category where the objects are points of $X$, and the morphisms $x \\to y$ are paths from $x$ to $y$, up to homotopy. Then the automorphism group of $x_0$ is the (pointed) fundamental group $\\pi_1(X, x_0)$. In the case where $X$ is connected, and $\\pi_1(X)$ is not abelian, this illustrates the fact that for a connected groupoid — whose definition you can guess — the automorphism groups of the objects are all isomorphic, but not canonically isomorphic.)",
+    "status": "not_started",
+    "solutions": [],
+    "source_file": null,
+    "start_line": 71,
+    "end_line": 74,
+    "chapter": null,
+    "section": null,
+    "extraction_method": "deterministic_subsubsection_exercise",
+    "extraction_timestamp": "2025-12-23T15:35:36.081576"
+  },
+  {
+    "id": "1.1.C",
+    "title": "EXERCISE.",
+    "content": "Let $(\\cdot)^{\\vee \\vee} \\colon f.d.Vec_{k} \\to f.d.Vec_{k}$ be the double dual functor from the category of finite-dimensional vector spaces over $k$ to itself. Show that $(\\cdot)^{\\vee \\vee}$ is naturally isomorphic to the identity functor on $f.d.Vec_{k}$. (Without the finite-dimensionality hypothesis, we only get a natural transformation of functors from $\\operatorname{id}$ to $(\\cdot)^{\\vee \\vee}$.)\n\nLet $\\mathcal{V}$ be the category whose objects are the $k$-vector spaces $k^n$ for each $n \\geq 0$ (there is one vector space for each $n$), and whose morphisms are linear transformations. The objects of $\\mathcal{V}$ can be thought of as vector spaces with bases, and the morphisms as matrices. There is an obvious functor $\\mathcal{V} \\to f.d.Vec_k$, as each $k^n$ is a finite-dimensional vector space.",
+    "status": "not_started",
+    "solutions": [],
+    "source_file": null,
+    "start_line": 200,
+    "end_line": 204,
+    "chapter": null,
+    "section": null,
+    "extraction_method": "deterministic_subsubsection_exercise",
+    "extraction_timestamp": "2025-12-23T15:35:36.081636"
+  },
+  {
+    "id": "1.1.D",
+    "title": "EXERCISE.",
+    "content": "Show that $\\mathcal{V} \\to f.d.Vec_k$ gives an equivalence of categories, by describing an \"inverse\" functor. (Recall that we are being cavalier about set-theoretic assumptions, see Caution 0.3.1, so feel free to simultaneously choose bases for each vector space in $f.d.Vec_k$. To make this precise, you will need to use Gödel-Bernays set theory or else replace $f.d.Vec_k$ with a very similar small category, but we won't worry about this.)",
+    "status": "not_started",
+    "solutions": [],
+    "source_file": null,
+    "start_line": 204,
+    "end_line": 206,
+    "chapter": null,
+    "section": null,
+    "extraction_method": "deterministic_subsubsection_exercise",
+    "extraction_timestamp": "2025-12-23T15:35:36.081669"
+  }
+]

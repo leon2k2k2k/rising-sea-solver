@@ -10,24 +10,12 @@ import json
 import sys
 import os
 from typing import List, Dict, Optional, Tuple
-from dataclasses import dataclass
 from pathlib import Path
 
 # Add project root to path for imports
 sys.path.append(str(Path(__file__).parent.parent.parent))
 from together import Together
-
-
-@dataclass
-class Exercise:
-    """Represents a single exercise from the textbook."""
-    id: str
-    title: str
-    content: str
-    start_line: Optional[int] = None
-    end_line: Optional[int] = None
-    extraction_method: str = "unknown"
-    confidence: float = 1.0
+from src.models import Exercise
 
 
 class DeterministicExerciseExtractor:
@@ -35,8 +23,8 @@ class DeterministicExerciseExtractor:
     
     def __init__(self):
         self.exercise_patterns = [
-            # Pattern 1: \subsubsection*{1.1.A. Unimportant Exercise}
-            (r'\\subsubsection\*\{([^}]*(?:[Ee]xercise|EXERCISE)[^}]*)\}(.*?)(?=\\subsubsection|\Z)', 
+            # Pattern 1: \subsubsection*{1.1.A. Title} followed by content until next \subsubsection or major section
+            (r'\\subsubsection\*\{(\d+\.\d+\.[A-Z])\.\s*([^}]*)\}(.*?)(?=\\subsubsection|\\section|\\subsection|\Z)', 
              "subsubsection_exercise"),
             
             # Pattern 2: \begin{exercise}...\end{exercise}
@@ -61,16 +49,24 @@ class DeterministicExerciseExtractor:
             matches = re.finditer(pattern, latex_content, re.DOTALL | re.IGNORECASE)
             
             for match in matches:
-                # Extract exercise ID from title
-                title = match.group(1) if len(match.groups()) > 1 else match.group(1)
-                content = match.group(2) if len(match.groups()) > 1 else match.group(1)
-                
-                # Clean up content
-                content = content.strip()
-                title = title.strip()
-                
-                # Extract exercise ID (like "1.1.A")
-                exercise_id = self._extract_exercise_id(title)
+                # Handle different pattern types
+                if pattern_name == "subsubsection_exercise":
+                    # Pattern: \subsubsection*{1.1.A. Title}content
+                    exercise_id = match.group(1)  # "1.1.A"
+                    title = match.group(2).strip()  # "Title"
+                    content = match.group(3).strip()  # content
+                elif pattern_name == "environment_exercise":
+                    # Pattern: \begin{exercise}content\end{exercise}
+                    content = match.group(1).strip()
+                    title = self._extract_title_from_content(content)
+                    exercise_id = self._extract_exercise_id(title)
+                else:
+                    # Other patterns - fallback to old logic
+                    title = match.group(1) if len(match.groups()) > 1 else match.group(1)
+                    content = match.group(2) if len(match.groups()) > 1 else match.group(1)
+                    title = title.strip()
+                    content = content.strip()
+                    exercise_id = self._extract_exercise_id(title)
                 
                 # Find line numbers
                 start_pos = match.start()
@@ -85,7 +81,7 @@ class DeterministicExerciseExtractor:
                     start_line=start_line,
                     end_line=end_line,
                     extraction_method=f"deterministic_{pattern_name}",
-                    confidence=1.0
+                    extraction_confidence=1.0
                 )
                 
                 exercises.append(exercise)
@@ -109,6 +105,16 @@ class DeterministicExerciseExtractor:
         
         # Last resort: generate from title
         return title.replace(' ', '_').replace('.', '').lower()[:20]
+    
+    def _extract_title_from_content(self, content: str) -> str:
+        """Extract a reasonable title from exercise content."""
+        # Get first sentence or first 50 characters as title
+        sentences = content.split('.')
+        if sentences and len(sentences[0]) < 100:
+            return sentences[0].strip()
+        
+        # Fallback to first 50 characters
+        return content.strip()[:50] + "..." if len(content) > 50 else content.strip()
     
     def _deduplicate_exercises(self, exercises: List[Exercise]) -> List[Exercise]:
         """Remove duplicate exercises based on content similarity."""
@@ -229,7 +235,7 @@ Be thorough and capture ALL exercises. Include the complete exercise text, not s
                     start_line=start_line,
                     end_line=end_line,
                     extraction_method="agent_based",
-                    confidence=ex_data.get("confidence", 0.8)
+                    extraction_confidence=ex_data.get("confidence", 0.8)
                 )
                 exercises.append(exercise)
                 
@@ -262,7 +268,7 @@ Be thorough and capture ALL exercises. Include the complete exercise text, not s
                         title=match.group(2),
                         content=match.group(3),
                         extraction_method="agent_based_fallback",
-                        confidence=0.6
+                        extraction_confidence=0.6
                     )
                     exercises.append(exercise)
         
@@ -327,7 +333,7 @@ class HybridExerciseExtractor:
         merged = []
         for exercise_id, candidates in exercises_by_id.items():
             # Sort by confidence, then by method preference
-            candidates.sort(key=lambda x: (x.confidence, x.extraction_method == "deterministic"), reverse=True)
+            candidates.sort(key=lambda x: (x.extraction_confidence, x.extraction_method == "deterministic"), reverse=True)
             merged.append(candidates[0])
         
         # Sort by exercise ID for consistent output
@@ -371,7 +377,7 @@ def main():
     for ex in agent_exercises:
         print(f"  - {ex.id}: {ex.title}")
         print(f"    Method: {ex.extraction_method}")
-        print(f"    Confidence: {ex.confidence}")
+        print(f"    Confidence: {ex.extraction_confidence}")
         print(f"    Content preview: {ex.content[:100]}...")
         print()
     
@@ -383,7 +389,7 @@ def main():
     for ex in hybrid_exercises:
         print(f"  - {ex.id}: {ex.title}")
         print(f"    Method: {ex.extraction_method}")
-        print(f"    Confidence: {ex.confidence}")
+        print(f"    Confidence: {ex.extraction_confidence}")
         print()
     
     print(f"\nSummary:")

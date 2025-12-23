@@ -1,0 +1,31 @@
+{
+  "source_file": "data/latex/FOAG_1_1_copy.tex",
+  "extraction_date": "/Users/leonliu/math-stuff/rising-sea-solver",
+  "total_exercises": 4,
+  "exercises": [
+    {
+      "id": "1.1.A",
+      "title": "Unimportant Exercise",
+      "method": "deterministic_subsubsection_exercise",
+      "confidence": 1.0
+    },
+    {
+      "id": "1.1.B",
+      "title": "Exercise",
+      "method": "deterministic_subsubsection_exercise",
+      "confidence": 1.0
+    },
+    {
+      "id": "1.1.C",
+      "title": "EXERCISE.",
+      "method": "deterministic_subsubsection_exercise",
+      "confidence": 1.0
+    },
+    {
+      "id": "1.1.D",
+      "title": "EXERCISE.",
+      "method": "deterministic_subsubsection_exercise",
+      "confidence": 1.0
+    }
+  ]
+}

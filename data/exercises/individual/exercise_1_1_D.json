@@ -1,0 +1,14 @@
+{
+  "id": "1.1.D",
+  "title": "EXERCISE.",
+  "content": "Show that $\\mathcal{V} \\to f.d.Vec_k$ gives an equivalence of categories, by describing an \"inverse\" functor. (Recall that we are being cavalier about set-theoretic assumptions, see Caution 0.3.1, so feel free to simultaneously choose bases for each vector space in $f.d.Vec_k$. To make this precise, you will need to use Gödel-Bernays set theory or else replace $f.d.Vec_k$ with a very similar small category, but we won't worry about this.)",
+  "status": "not_started",
+  "solutions": [],
+  "source_file": null,
+  "start_line": 204,
+  "end_line": 206,
+  "chapter": null,
+  "section": null,
+  "extraction_method": "deterministic_subsubsection_exercise",
+  "extraction_timestamp": "2025-12-23T15:35:36.081669"
+}

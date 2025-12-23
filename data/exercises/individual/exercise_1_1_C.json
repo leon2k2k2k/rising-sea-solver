@@ -1,0 +1,14 @@
+{
+  "id": "1.1.C",
+  "title": "EXERCISE.",
+  "content": "Let $(\\cdot)^{\\vee \\vee} \\colon f.d.Vec_{k} \\to f.d.Vec_{k}$ be the double dual functor from the category of finite-dimensional vector spaces over $k$ to itself. Show that $(\\cdot)^{\\vee \\vee}$ is naturally isomorphic to the identity functor on $f.d.Vec_{k}$. (Without the finite-dimensionality hypothesis, we only get a natural transformation of functors from $\\operatorname{id}$ to $(\\cdot)^{\\vee \\vee}$.)\n\nLet $\\mathcal{V}$ be the category whose objects are the $k$-vector spaces $k^n$ for each $n \\geq 0$ (there is one vector space for each $n$), and whose morphisms are linear transformations. The objects of $\\mathcal{V}$ can be thought of as vector spaces with bases, and the morphisms as matrices. There is an obvious functor $\\mathcal{V} \\to f.d.Vec_k$, as each $k^n$ is a finite-dimensional vector space.",
+  "status": "not_started",
+  "solutions": [],
+  "source_file": null,
+  "start_line": 200,
+  "end_line": 204,
+  "chapter": null,
+  "section": null,
+  "extraction_method": "deterministic_subsubsection_exercise",
+  "extraction_timestamp": "2025-12-23T15:35:36.081636"
+}
